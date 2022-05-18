@@ -1,19 +1,36 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Greeter", function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+describe("PlatziFood", function () {
+  it("Add a new dish", async function () {
+    const [owner, addr1] = await ethers.getSigners();
+    const PlatziFood = await ethers.getContractFactory("PlatziFood");
+    const platziFood = await PlatziFood.deploy();
+    await platziFood.deployed();
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
+    var addFood = await platziFood.addPlatziFood(
+      "https://eatyourworld.com/images/content_images/images/gallo-pinto.jpg",
+      "Gallo Pinto",
+      "Costa Rica"
+    );
 
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
+    await addFood.wait();
 
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
+    var addFood2 = await platziFood
+      .connect(addr1)
+      .addPlatziFood(
+        "https://eatyourworld.com/images/content_images/images/gallo-pinto.jpg",
+        "Gallo Pinto2",
+        "Costa Rica"
+      );
 
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+    await addFood2.wait();
+
+    var foods = await platziFood.getAllPlatziFoods();
+    expect(foods.length).to.equal(2);
+
+    var foodsByOwner = await platziFood.getPlatziFoodsByOwner();
+
+    expect(foodsByOwner.length).to.equal(1);
   });
 });
