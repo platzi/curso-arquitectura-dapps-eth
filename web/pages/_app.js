@@ -1,7 +1,25 @@
 import "../styles/globals.css";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { ethers } from "ethers";
 
 function MyApp({ Component, pageProps }) {
+  const [walletAccount, setWalletAccount] = useState("");
+
+  const checkIfMetaMaskIsConnected = async () => {
+    const { ethereum } = window;
+
+    if (!ethereum) {
+      console.log("Check if Metamask is installed.");
+    } else {
+      console.log("Check if Metamask is installed.");
+    }
+  };
+
+  useEffect(() => {
+    checkIfMetaMaskIsConnected();
+  }, []);
+
   return (
     <div>
       <main>
