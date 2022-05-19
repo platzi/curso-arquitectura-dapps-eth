@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 
 function MyApp({ Component, pageProps }) {
   const [walletAccount, setWalletAccount] = useState("");
+  const [isConnectedToRinkeby, setConnectedToRinkeby] = useState(true);
 
   const checkIfMetaMaskIsConnected = async () => {
     const { ethereum } = window;
@@ -14,6 +15,14 @@ function MyApp({ Component, pageProps }) {
       console.log("Check if Metamask is installed.");
     } else {
       console.log("Check if Metamask is installed.");
+
+      ethereum.on("chainChanged", function (networkId) {
+        if (parseInt(networkId) !== 4) {
+          setConnectedToRinkeby(false);
+        } else {
+          setConnectedToRinkeby(true);
+        }
+      });
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -52,6 +61,18 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div>
+      {!isConnectedToRinkeby && (
+        <div className={styles.container}>
+          <div className={styles.wrongNetwork}>
+            <h1>Red Equivocada</h1>
+            <p>
+              {" "}
+              Por favor conectarse a la red Rinkeby en su MetaMask. Gracias :D{" "}
+            </p>
+          </div>
+        </div>
+      )}
+
       {!walletAccount && (
         <div className={styles.container}>
           <button
@@ -63,7 +84,7 @@ function MyApp({ Component, pageProps }) {
         </div>
       )}
 
-      {walletAccount && (
+      {walletAccount && isConnectedToRinkeby && (
         <div>
           <main>
             <nav className="border-b p-6">
