@@ -124,7 +124,14 @@
   border: none;
   margin: 0px;
   text-decoration: none;
-  background: linear-gradient(to right, rgb(25, 96, 210), rgb(88, 245, 208), rgb(25, 96, 210), rgb(88, 245, 208)) 100% 0% / 200% 100%;
+  background: linear-gradient(
+      to right,
+      rgb(25, 96, 210),
+      rgb(88, 245, 208),
+      rgb(25, 96, 210),
+      rgb(88, 245, 208)
+    )
+    100% 0% / 200% 100%;
   padding: 0.2rem;
   display: inline-block;
   user-select: none;
@@ -135,20 +142,8 @@
   cursor: pointer;
 }
 
-.falcondiv {
-  background-color: rgb(255, 255, 255);
-    border-radius: 1.2rem;
-    padding: 1rem 1.8rem;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    transition: all 200ms ease 0s;
-}
-
 .walletButtonText {
-  font-size: 1.rem;
+  font-size: 1rem;
   line-height: 2rem;
   color: black;
 }
@@ -156,10 +151,22 @@
 .wrongNetwork {
   width: 30rem;
   height: 10rem;
-  background: rgb(238,174,202);
-  background: -moz-radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-  background: -webkit-radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  background: rgb(238, 174, 202);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eeaeca",endColorstr="#94bbe9",GradientType=1);
 }
 
@@ -174,7 +181,7 @@
   margin-bottom: 1rem;
   margin-top: 1rem;
   --tw-text-opacity: 1;
-  color: rgba(153,27,27,var(--tw-text-opacity));
+  color: rgba(153, 27, 27, var(--tw-text-opacity));
 }
 
 .wrongNetwork > p {
@@ -185,5 +192,21 @@
   color: black;
   margin-bottom: 1rem;
   --tw-text-opacity: 1;
-    color: rgba(153,27,27,var(--tw-text-opacity));
+  color: rgba(153, 27, 27, var(--tw-text-opacity));
+}
+
+.eth_connect_wallet_button {
+  height: 45px;
+  border: 0;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: -webkit-linear-gradient(left, #60c657, #35aee2);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
 }
