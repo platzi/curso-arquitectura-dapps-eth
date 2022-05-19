@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
     if (accounts.length != 0) {
       setWalletAccount(accounts[0]);
     } else {
-      console.log("No authorized account");
+      console.log("Not authorized");
     }
   };
 
